@@ -8,11 +8,12 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 public interface ScenarioNodeTargetRepository extends CrudRepository<AbstractScenarioNodeTargetEntity, String> {
 
-    @Query(value = "SELECT items FROM ScenarioNodeTargetListEntity list LEFT JOIN FETCH list.items items WHERE list.uuId = :uuId")
-    Stream<AbstractScenarioNodeTargetEntity> findItemsById(@Param("uuId") String uuId);
+    @Query(value = "SELECT list FROM ScenarioNodeTargetListEntity list LEFT JOIN FETCH list.items items WHERE list.uuId = :uuId")
+    Optional<ScenarioNodeTargetListEntity> findListFetchItemsById(@Param("uuId") String uuId);
 
 }

@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -45,11 +46,12 @@ public class ScenarioTargetService {
     private List<AbstractScenarioNodeTargetEntity> findAllItemsRecursive(AbstractScenarioNodeTargetEntity targetParent) {
         List<AbstractScenarioNodeTargetEntity> list = new ArrayList<>();
         if (targetParent instanceof ScenarioNodeTargetListEntity) {
-            Stream<AbstractScenarioNodeTargetEntity> items = repository.findItemsById(targetParent.getUuId());
-            items.forEach(item -> {
-                list.add(item);
-                list.addAll(findAllItemsRecursive(item));
-            });
+            Optional<ScenarioNodeTargetListEntity> optListFetchItems = repository.findListFetchItemsById(targetParent.getUuId());
+            optListFetchItems.ifPresent(listFetchItems ->  listFetchItems.getItems().forEach(item -> {
+                      list.add(item);
+                      list.addAll(findAllItemsRecursive(item));
+                  })
+            );
         }
         return list;
     }
