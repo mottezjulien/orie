@@ -9,16 +9,12 @@
         <version>1.0</version>
     </parent>
 
-    <artifactId>orie-scenario</artifactId>
+    <artifactId>orie-shared</artifactId>
+    <packaging>pom</packaging>
 
-    <dependencies>
-        <dependency>
-            <groupId>fr.jmottez.orie</groupId>
-            <artifactId>orie-shared-facade</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-    </dependencies>
-
+    <modules>
+        <module>orie-shared-facade</module>
+    </modules>
 
 </project>
 

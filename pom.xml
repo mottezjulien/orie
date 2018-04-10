@@ -57,6 +57,7 @@
 
     <modules>
         <module>orie-scenario</module>
+        <module>orie-shared</module>
     </modules>
 
     <build>
