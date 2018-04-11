@@ -15,7 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.Optional;
 
 @Service
-public class ScenarioTargetService {
+public class ScenarioNodeTargetService {
 
     @Autowired
     ScenarioNodeTargetAssembler assembler;

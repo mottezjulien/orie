@@ -1,6 +1,6 @@
 package fr.orie.scenario.facade.controller;
 
-import fr.orie.scenario.core.service.ScenarioTargetService;
+import fr.orie.scenario.core.service.ScenarioNodeTargetService;
 import fr.orie.scenario.facade.assembler.ScenarioNodeFacadeAssembler;
 import fr.orie.scenario.facade.assembler.ScenarioTargetFacadeAssembler;
 import fr.orie.scenario.facade.dto.ScenarioNodeDTO;
@@ -15,10 +15,10 @@ import java.util.stream.Stream;
 
 @Controller
 @RequestMapping(value = "/scenario/target")
-public class ScenarioTargetController {
+public class ScenarioNodeTargetController {
 
     @Autowired
-    private ScenarioTargetService service;
+    private ScenarioNodeTargetService service;
 
     @Autowired
     private ScenarioTargetFacadeAssembler assembler;
