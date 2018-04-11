@@ -10,7 +10,7 @@ import java.util.Optional;
 
 public interface ScenarioNodeRepository extends CrudRepository<ScenarioNodeEntity, String> {
 
-    @Query(value = "SELECT node FROM ScenarioNodeEntity node LEFT JOIN FETCH node.rootTreeTarget target WHERE node.uuId = :uuId")
+    @Query(value = "SELECT node FROM ScenarioNodeEntity node LEFT JOIN FETCH node.target target WHERE node.uuId = :uuId")
     Optional<ScenarioNodeEntity> findByIdFetchTarget(@Param("uuId") String uuId);
 
 }

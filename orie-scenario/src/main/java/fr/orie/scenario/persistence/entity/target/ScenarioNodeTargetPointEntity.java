@@ -4,7 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 
 @Entity
-public class ScenarioNodeTargetItemPointEntity extends AbstractScenarioNodeTargetEntity {
+public class ScenarioNodeTargetPointEntity extends AbstractScenarioNodeTargetEntity {
 
     @Column(name="POINT_UUID")
     private String pointUuId;

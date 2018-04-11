@@ -2,8 +2,7 @@ package fr.orie.scenario;
 
 import fr.orie.scenario.persistence.entity.ScenarioEntity;
 import fr.orie.scenario.persistence.entity.ScenarioNodeEntity;
-import fr.orie.scenario.persistence.entity.target.AbstractScenarioNodeTargetEntity;
-import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetItemPointEntity;
+import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetPointEntity;
 import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetListEntity;
 import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetOperator;
 import fr.orie.scenario.persistence.repository.ScenarioNodeRepository;
@@ -24,12 +23,12 @@ public class ScenarioApp {
         ScenarioEntity scenario1 = new ScenarioEntity();
         scenarioRepository.save(scenario1);
 
-        ScenarioNodeTargetItemPointEntity target1 = new ScenarioNodeTargetItemPointEntity();
+        ScenarioNodeTargetPointEntity target1 = new ScenarioNodeTargetPointEntity();
         target1.setRadiusMeter(159);
         target1.setPointUuId("aaa");
         scenarioNodeTargetRepository.save(target1);
 
-        ScenarioNodeTargetItemPointEntity target2 = new ScenarioNodeTargetItemPointEntity();
+        ScenarioNodeTargetPointEntity target2 = new ScenarioNodeTargetPointEntity();
         target2.setRadiusMeter(28);
         target2.setPointUuId("bbb");
         scenarioNodeTargetRepository.save(target2);
