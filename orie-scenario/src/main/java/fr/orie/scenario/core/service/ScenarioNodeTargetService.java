@@ -27,8 +27,8 @@ public class ScenarioNodeTargetService {
     ScenarioNodeRepository nodeRepository;
 
 
-    public Optional<ScenarioNodeTargetModel> findAllByNode(ScenarioNodeModel nodeModel) {
-        Optional<ScenarioNodeEntity> opt = nodeRepository.findByIdFetchTarget(nodeModel.getUuId());
+    public Optional<ScenarioNodeTargetModel> findByNodeId(String nodeId) {
+        Optional<ScenarioNodeEntity> opt = nodeRepository.findByIdFetchTarget(nodeId);
         if (opt.isPresent()) {
             return Optional.of(buildRecursive(opt.get().getTarget()));
         }

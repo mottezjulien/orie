@@ -8,13 +8,14 @@ import fr.orie.scenario.facade.dto.ScenarioTargetDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.stream.Stream;
 
 
 @Controller
-@RequestMapping(value = "/scenario/target")
+@RequestMapping(value = "/scenario/node/target")
 public class ScenarioNodeTargetController {
 
     @Autowired
@@ -26,9 +27,9 @@ public class ScenarioNodeTargetController {
     @Autowired
     private ScenarioNodeFacadeAssembler nodeAssembler;
 
-    @GetMapping(path = "/")
-    public Stream<ScenarioTargetDTO> findAllByNode(ScenarioNodeDTO node) {
-        return service.findAllByNode(nodeAssembler.toModel(node))
+    @GetMapping(path = "/{scenarioNodeId}/nodeId" )
+    public Stream<ScenarioTargetDTO> findByNodeId(@PathVariable(value = "scenarioNodeId") String scenarioNodeId) {
+        return service.findByNodeId(scenarioNodeId)
                 .stream()
                 .map(model -> assembler.fromModel(model));
     }
