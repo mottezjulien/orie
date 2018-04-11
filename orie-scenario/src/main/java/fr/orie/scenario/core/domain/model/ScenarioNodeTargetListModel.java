@@ -5,11 +5,11 @@ import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetOperator;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ScenarioTargetListObjectiveModel implements ScenarioTargetObjectiveModel {
+public class ScenarioNodeTargetListModel extends ScenarioNodeTargetModel {
 
     private ScenarioNodeTargetOperator operator;
 
-    private List<ScenarioTargetObjectiveModel> items = new ArrayList<>();
+    private List<ScenarioNodeTargetModel> items = new ArrayList<>();
 
     public void setOperator(ScenarioNodeTargetOperator operator) {
         this.operator = operator;
@@ -19,7 +19,7 @@ public class ScenarioTargetListObjectiveModel implements ScenarioTargetObjective
         return operator;
     }
 
-    public List<ScenarioTargetObjectiveModel> getItems() {
+    public List<ScenarioNodeTargetModel> getItems() {
         return items;
     }
 }

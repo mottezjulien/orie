@@ -1,6 +1,6 @@
 package fr.orie.scenario.core.domain.model;
 
-public class ScenarioTargetPointObjectiveModel implements ScenarioTargetObjectiveModel {
+public class ScenarioNodeTargetPointModel extends ScenarioNodeTargetModel {
 
     private int radiusMeter;
     private String pointUuId;

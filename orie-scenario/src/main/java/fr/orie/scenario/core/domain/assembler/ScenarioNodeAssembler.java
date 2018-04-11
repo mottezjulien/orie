@@ -9,13 +9,19 @@ import org.springframework.stereotype.Component;
 public class ScenarioNodeAssembler {
 
     @Autowired
-    private ScenarioTargetModelAssembler targetAssembler;
+    private ScenarioNodeTargetAssembler targetAssembler;
 
     public ScenarioNodeModel fromEntity(ScenarioNodeEntity entity) {
         ScenarioNodeModel model = new ScenarioNodeModel();
         model.setUuId(entity.getUuId());
         model.setTarget(targetAssembler.fromEntity(entity.getTarget()));
-        //model.set(entity.getResults())
         return model;
+    }
+
+    public ScenarioNodeEntity toEntity(ScenarioNodeModel model) {
+        ScenarioNodeEntity entity = new ScenarioNodeEntity();
+        entity.setUuId(model.getUuId());
+        entity.setTarget(targetAssembler.toEntity(model.getTarget()));
+        return entity;
     }
 }

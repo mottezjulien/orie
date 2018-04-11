@@ -3,7 +3,8 @@ package fr.orie.scenario.core.domain.model;
 public class ScenarioNodeModel {
 
     private String uuId;
-    private ScenarioTargetObjectiveModel target;
+
+    private ScenarioNodeTargetModel target;
 
     public String getUuId() {
         return uuId;
@@ -13,11 +14,11 @@ public class ScenarioNodeModel {
         this.uuId = uuId;
     }
 
-    public void setTarget(ScenarioTargetObjectiveModel target) {
-        this.target = target;
+    public ScenarioNodeTargetModel getTarget() {
+        return target;
     }
 
-    public ScenarioTargetObjectiveModel getTarget() {
-        return target;
+    public void setTarget(ScenarioNodeTargetModel target) {
+        this.target = target;
     }
 }

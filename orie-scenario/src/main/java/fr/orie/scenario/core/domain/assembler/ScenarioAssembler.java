@@ -21,10 +21,17 @@ public class ScenarioAssembler {
         return models.stream();
     }
 
-    private ScenarioModel fromEntity(ScenarioEntity entity) {
+    public ScenarioModel fromEntity(ScenarioEntity entity) {
         ScenarioModel model = new ScenarioModel();
         model.setUuId(entity.getUuId());
         entity.getNodes().forEach(node -> model.getNodes().add(nodeAssembler.fromEntity(node)));
         return model;
+    }
+
+    public ScenarioEntity toEntity(ScenarioModel model) {
+        ScenarioEntity entity = new ScenarioEntity();
+        entity.setUuId(model.getUuId());
+        model.getNodes().forEach(node -> entity.getNodes().add(nodeAssembler.toEntity(node)));
+        return entity;
     }
 }

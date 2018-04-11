@@ -12,4 +12,10 @@ public class ScenarioFacadeAssembler {
         dto.setUuId(model.getUuId());
         return dto;
     }
+
+    public ScenarioModel toModel(ScenarioDTO dto) {
+        ScenarioModel model = new ScenarioModel();
+        model.setUuId(dto.getUuId());
+        return model;
+    }
 }

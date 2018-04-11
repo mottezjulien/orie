@@ -1,13 +1,11 @@
 package fr.orie.scenario.core.service;
 
-import fr.orie.scenario.core.domain.assembler.ScenarioTargetModelAssembler;
+import fr.orie.scenario.core.domain.assembler.ScenarioNodeTargetAssembler;
 import fr.orie.scenario.core.domain.model.ScenarioNodeModel;
-import fr.orie.scenario.core.domain.model.ScenarioTargetListObjectiveModel;
-import fr.orie.scenario.core.domain.model.ScenarioTargetModel;
-import fr.orie.scenario.core.domain.model.ScenarioTargetObjectiveModel;
+import fr.orie.scenario.core.domain.model.ScenarioNodeTargetListModel;
+import fr.orie.scenario.core.domain.model.ScenarioNodeTargetModel;
 import fr.orie.scenario.persistence.entity.ScenarioNodeEntity;
 import fr.orie.scenario.persistence.entity.target.AbstractScenarioNodeTargetEntity;
-import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetItemPointEntity;
 import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetListEntity;
 import fr.orie.scenario.persistence.repository.ScenarioNodeRepository;
 import fr.orie.scenario.persistence.repository.ScenarioNodeTargetRepository;
@@ -20,7 +18,7 @@ import java.util.Optional;
 public class ScenarioTargetService {
 
     @Autowired
-    ScenarioTargetModelAssembler assembler;
+    ScenarioNodeTargetAssembler assembler;
 
     @Autowired
     ScenarioNodeTargetRepository repository;
@@ -29,22 +27,18 @@ public class ScenarioTargetService {
     ScenarioNodeRepository nodeRepository;
 
 
-    public Optional<ScenarioTargetModel> findAllByNode(ScenarioNodeModel nodeModel) {
+    public Optional<ScenarioNodeTargetModel> findAllByNode(ScenarioNodeModel nodeModel) {
         Optional<ScenarioNodeEntity> opt = nodeRepository.findByIdFetchTarget(nodeModel.getUuId());
         if (opt.isPresent()) {
-            ScenarioNodeEntity root = opt.get();
-            ScenarioTargetModel targetModel = new ScenarioTargetModel();
-            targetModel.setUuId(root.getTarget().getUuId());
-            targetModel.setObjective(buildRecursive(root.getTarget()));
-            return Optional.of(targetModel);
+            return Optional.of(buildRecursive(opt.get().getTarget()));
         }
         return Optional.empty();
     }
 
-    private ScenarioTargetObjectiveModel buildRecursive(AbstractScenarioNodeTargetEntity entity) {
+    private ScenarioNodeTargetModel buildRecursive(AbstractScenarioNodeTargetEntity entity) {
         switch (entity.type()) {
             case LIST:
-                ScenarioTargetListObjectiveModel model = (ScenarioTargetListObjectiveModel) assembler.fromEntity(entity);
+                ScenarioNodeTargetListModel model = (ScenarioNodeTargetListModel) assembler.fromEntity(entity);
                 Optional<ScenarioNodeTargetListEntity> optList = repository.findListFetchItemsById(entity.getUuId());
                 optList.ifPresent(entityList -> entityList.getItems().forEach(itemEntity -> {
                     model.getItems().add(buildRecursive(itemEntity));
