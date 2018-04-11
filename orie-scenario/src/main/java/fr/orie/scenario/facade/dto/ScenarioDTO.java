@@ -1,6 +1,6 @@
 package fr.orie.scenario.facade.dto;
 
-public class ScenarioNodeDTO {
+public class ScenarioDTO {
 
     private String uuId;
 

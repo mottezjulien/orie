@@ -3,6 +3,7 @@ package fr.orie.scenario.persistence.entity.target;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
@@ -22,5 +23,5 @@ public abstract class AbstractScenarioNodeTargetEntity {
         this.uuId = uuId;
     }
 
-
+    public abstract AbstractScenarioNodeTargetEntityType type();
 }

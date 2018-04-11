@@ -2,19 +2,19 @@ package fr.orie.scenario.core.service;
 
 import fr.orie.scenario.core.domain.assembler.ScenarioTargetModelAssembler;
 import fr.orie.scenario.core.domain.model.ScenarioNodeModel;
+import fr.orie.scenario.core.domain.model.ScenarioTargetListObjectiveModel;
 import fr.orie.scenario.core.domain.model.ScenarioTargetModel;
+import fr.orie.scenario.core.domain.model.ScenarioTargetObjectiveModel;
+import fr.orie.scenario.persistence.entity.ScenarioNodeEntity;
 import fr.orie.scenario.persistence.entity.target.AbstractScenarioNodeTargetEntity;
+import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetItemPointEntity;
 import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetListEntity;
 import fr.orie.scenario.persistence.repository.ScenarioNodeRepository;
 import fr.orie.scenario.persistence.repository.ScenarioNodeTargetRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
 
 @Service
 public class ScenarioTargetService {
@@ -29,32 +29,30 @@ public class ScenarioTargetService {
     ScenarioNodeRepository nodeRepository;
 
 
-    public List<ScenarioTargetModel> findAllByNode(ScenarioNodeModel nodeModel) {
-        List<ScenarioTargetModel> list = new ArrayList<>();
-        nodeRepository
-                .findByIdFetchTarget(nodeModel.getUuid())
-                .ifPresent(node -> {
-                    AbstractScenarioNodeTargetEntity root = node.getRootTreeTarget();
-                    list.add(assembler.fromEntity(root));
-                    list.addAll(findAllItemsRecursive(root)
-                            .stream()
-                            .map(entity -> assembler.fromEntity(entity)).collect(Collectors.toList()));
-                });
-        return list;
-    }
-
-    private List<AbstractScenarioNodeTargetEntity> findAllItemsRecursive(AbstractScenarioNodeTargetEntity targetParent) {
-        List<AbstractScenarioNodeTargetEntity> list = new ArrayList<>();
-        if (targetParent instanceof ScenarioNodeTargetListEntity) {
-            Optional<ScenarioNodeTargetListEntity> optListFetchItems = repository.findListFetchItemsById(targetParent.getUuId());
-            optListFetchItems.ifPresent(listFetchItems ->  listFetchItems.getItems().forEach(item -> {
-                      list.add(item);
-                      list.addAll(findAllItemsRecursive(item));
-                  })
-            );
+    public Optional<ScenarioTargetModel> findAllByNode(ScenarioNodeModel nodeModel) {
+        Optional<ScenarioNodeEntity> opt = nodeRepository.findByIdFetchTarget(nodeModel.getUuId());
+        if (opt.isPresent()) {
+            ScenarioNodeEntity root = opt.get();
+            ScenarioTargetModel targetModel = new ScenarioTargetModel();
+            targetModel.setUuId(root.getTarget().getUuId());
+            targetModel.setObjective(buildRecursive(root.getTarget()));
+            return Optional.of(targetModel);
         }
-        return list;
+        return Optional.empty();
     }
 
+    private ScenarioTargetObjectiveModel buildRecursive(AbstractScenarioNodeTargetEntity entity) {
+        switch (entity.type()) {
+            case LIST:
+                ScenarioTargetListObjectiveModel model = (ScenarioTargetListObjectiveModel) assembler.fromEntity(entity);
+                Optional<ScenarioNodeTargetListEntity> optList = repository.findListFetchItemsById(entity.getUuId());
+                optList.ifPresent(entityList -> entityList.getItems().forEach(itemEntity -> {
+                    model.getItems().add(buildRecursive(itemEntity));
+                }));
+                return model;
+            default:
+                return assembler.fromEntity(entity);
+        }
+    }
 
 }

@@ -2,14 +2,22 @@ package fr.orie.scenario.core.domain.model;
 
 public class ScenarioNodeModel {
 
-    private String uuid;
+    private String uuId;
+    private ScenarioTargetObjectiveModel target;
 
-    public String getUuid() {
-        return uuid;
+    public String getUuId() {
+        return uuId;
     }
 
-    public void setUuid(String uuid) {
-        this.uuid = uuid;
+    public void setUuId(String uuId) {
+        this.uuId = uuId;
     }
 
+    public void setTarget(ScenarioTargetObjectiveModel target) {
+        this.target = target;
+    }
+
+    public ScenarioTargetObjectiveModel getTarget() {
+        return target;
+    }
 }

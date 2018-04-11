@@ -37,4 +37,9 @@ public class ScenarioNodeTargetListEntity extends AbstractScenarioNodeTargetEnti
     public void setOperator(ScenarioNodeTargetOperator operator) {
         this.operator = operator;
     }
+
+    @Override
+    public AbstractScenarioNodeTargetEntityType type() {
+        return AbstractScenarioNodeTargetEntityType.LIST;
+    }
 }

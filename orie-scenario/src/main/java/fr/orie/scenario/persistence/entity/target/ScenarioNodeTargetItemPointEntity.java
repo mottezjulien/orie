@@ -27,4 +27,9 @@ public class ScenarioNodeTargetItemPointEntity extends AbstractScenarioNodeTarge
     public void setRadiusMeter(int radiusMeter) {
         this.radiusMeter = radiusMeter;
     }
+
+    @Override
+    public AbstractScenarioNodeTargetEntityType type() {
+        return AbstractScenarioNodeTargetEntityType.POINT;
+    }
 }

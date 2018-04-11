@@ -20,8 +20,8 @@ public class ScenarioNodeEntity {
     private ScenarioEntity scenario;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TARGET_ROOT_TREE_UUID")
-    private AbstractScenarioNodeTargetEntity rootTreeTarget;
+    @JoinColumn(name = "TARGET__UUID")
+    private AbstractScenarioNodeTargetEntity target;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name="SCENARIO_RESULT",
@@ -45,12 +45,12 @@ public class ScenarioNodeEntity {
         this.scenario = scenario;
     }
 
-    public AbstractScenarioNodeTargetEntity getRootTreeTarget() {
-        return rootTreeTarget;
+    public AbstractScenarioNodeTargetEntity getTarget() {
+        return target;
     }
 
-    public void setRootTreeTarget(AbstractScenarioNodeTargetEntity rootTreeTarget) {
-        this.rootTreeTarget = rootTreeTarget;
+    public void setTarget(AbstractScenarioNodeTargetEntity target) {
+        this.target = target;
     }
 
     public Set<AbstractScenarioNodeResultEntity> getResults() {
