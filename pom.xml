@@ -76,8 +76,9 @@
 
     <modules>
         <module>orie-scenario</module>
-        <module>orie-shared</module>
+        <module>orie-user</module>
         <module>orie-position</module>
+        <module>orie-shared</module>
     </modules>
 
     <build>
