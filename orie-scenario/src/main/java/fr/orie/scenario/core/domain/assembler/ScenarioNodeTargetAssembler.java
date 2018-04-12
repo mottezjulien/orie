@@ -1,16 +1,28 @@
 package fr.orie.scenario.core.domain.assembler;
 
+import fr.orie.scenario.core.domain.model.ScenarioModel;
 import fr.orie.scenario.core.domain.model.ScenarioNodeTargetListModel;
 import fr.orie.scenario.core.domain.model.ScenarioNodeTargetModel;
 import fr.orie.scenario.core.domain.model.ScenarioNodeTargetPointModel;
+import fr.orie.scenario.persistence.entity.ScenarioEntity;
 import fr.orie.scenario.persistence.entity.target.AbstractScenarioNodeTargetEntity;
 import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetPointEntity;
 import fr.orie.scenario.persistence.entity.target.ScenarioNodeTargetListEntity;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Stream;
+
 
 @Component
 public class ScenarioNodeTargetAssembler {
+
+    public Stream<ScenarioNodeTargetModel> fromEntities(Iterable<AbstractScenarioNodeTargetEntity> entities) {
+        List<ScenarioNodeTargetModel> models = new ArrayList<>();
+        entities.forEach(entity -> models.add(fromEntity(entity)));
+        return models.stream();
+    }
 
     public ScenarioNodeTargetModel fromEntity(AbstractScenarioNodeTargetEntity entity) {
         switch (entity.type()){
