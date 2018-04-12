@@ -1,4 +1,4 @@
-package fr.jmottez.parc.user.repository;
+package fr.orie.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;

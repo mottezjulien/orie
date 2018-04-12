@@ -1,8 +1,8 @@
-package fr.jmottez.parc.user.facade.controller;
+package fr.orie.user.facade.controller;
 
-import fr.jmottez.parc.user.core.service.UserService;
-import fr.jmottez.parc.user.facade.assembler.UserDTOAssembler;
-import fr.jmottez.parc.user.facade.dto.UserDTO;
+import fr.orie.user.core.service.UserService;
+import fr.orie.user.facade.assembler.UserDTOAssembler;
+import fr.orie.user.facade.dto.UserDTO;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;

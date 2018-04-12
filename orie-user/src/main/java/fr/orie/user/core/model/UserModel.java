@@ -1,4 +1,4 @@
-package fr.jmottez.parc.user.core.model;
+package fr.orie.user.core.model;
 
 public class UserModel {
 

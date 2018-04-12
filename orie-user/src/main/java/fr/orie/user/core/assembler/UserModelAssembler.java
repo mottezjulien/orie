@@ -1,7 +1,7 @@
-package fr.jmottez.parc.user.core.assembler;
+package fr.orie.user.core.assembler;
 
-import fr.jmottez.parc.user.core.model.UserModel;
-import fr.jmottez.parc.user.repository.UserEntity;
+import fr.orie.user.core.model.UserModel;
+import fr.orie.user.repository.UserEntity;
 import org.springframework.stereotype.Component;
 
 @Component

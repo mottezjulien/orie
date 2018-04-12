@@ -1,8 +1,8 @@
-package fr.jmottez.parc.user.core.service;
+package fr.orie.user.core.service;
 
-import fr.jmottez.parc.user.core.assembler.UserModelAssembler;
-import fr.jmottez.parc.user.core.model.UserModel;
-import fr.jmottez.parc.user.repository.UserRepository;
+import fr.orie.user.core.assembler.UserModelAssembler;
+import fr.orie.user.core.model.UserModel;
+import fr.orie.user.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.stream.Stream;

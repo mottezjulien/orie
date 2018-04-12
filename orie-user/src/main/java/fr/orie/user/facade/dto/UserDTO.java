@@ -1,4 +1,4 @@
-package fr.jmottez.parc.user.facade.dto;
+package fr.orie.user.facade.dto;
 
 public class UserDTO {
 

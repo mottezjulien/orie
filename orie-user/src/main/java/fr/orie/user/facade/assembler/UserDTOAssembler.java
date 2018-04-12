@@ -1,7 +1,7 @@
-package fr.jmottez.parc.user.facade.assembler;
+package fr.orie.user.facade.assembler;
 
-import fr.jmottez.parc.user.core.model.UserModel;
-import fr.jmottez.parc.user.facade.dto.UserDTO;
+import fr.orie.user.core.model.UserModel;
+import fr.orie.user.facade.dto.UserDTO;
 import org.springframework.stereotype.Component;
 
 @Component

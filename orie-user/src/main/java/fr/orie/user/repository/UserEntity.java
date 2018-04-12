@@ -1,4 +1,4 @@
-package fr.jmottez.parc.user.repository;
+package fr.orie.user.repository;
 
 import fr.jmottez.parc.generic.entity.AbstractEntityUuId;
 
