@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.stream.Stream;
 
 
-@Api(value = "User API", description = "the user API", tags = "Users")
+@Api(value = "Scenario node API", description = "The scenario node API", tags = "Scenario node")
 @Controller
 @RequestMapping(value = "/scenario/node")
 public class ScenarioNodeController {

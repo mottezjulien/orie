@@ -5,10 +5,7 @@ import fr.orie.scenario.facade.assembler.ScenarioTargetFacadeAssembler;
 import fr.orie.scenario.facade.dto.ScenarioNodeDTO;
 import fr.orie.scenario.facade.dto.ScenarioTargetDTO;
 import fr.orie.shared.facade.exception.ResourceNotFoundException;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,7 +14,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
-
+@Api(value = "Scenario node target API", description = "The scenario node target API", tags = "Scenario node target")
 @Controller
 @RequestMapping(value = "/scenario/node/target")
 public class ScenarioNodeTargetController {
